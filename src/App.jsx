@@ -1,11 +1,21 @@
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import './App.css'
+import { Home } from './Pages/blog/Home'
+import { Register } from './Pages/auth/Register'
+import { Login } from './Pages/auth/Login'
+import { AddBlog } from './Pages/blog/AddBlog'
 
 function App() {
   return (
     <>
-      <h1 className="text-3xl font-bold underline text-red-500 font-extralight">
-        Hello world!
-      </h1>
+      <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/login" element={<Login />} />
+        <Route path = "/addblog" element={< AddBlog />} />
+      </Routes>
+      </BrowserRouter>
     </>
   )
 }
