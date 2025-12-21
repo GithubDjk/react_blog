@@ -1,12 +1,11 @@
 import React from 'react'
-import { NavBar } from './components/NavBar'
 import { Layout } from '../global/components/layout/Layout'
 import { BlogForm } from './components/BlogForm'
 
-export const AddBlog = () => {
+export const EditBlog = () => {
   return (
     <Layout>
-      <BlogForm type='Create' />
+      <BlogForm type='Edit' />
     </Layout>
   )
 }
