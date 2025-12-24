@@ -12,6 +12,7 @@ export const Login = () => {
     try {
       const response = await axios.post(`${baseUrl}/login`, data)
       if(response?.status == 200){
+        localStorage.setItem('token', response.data.token)
         navigate('/')
       }
       else{
