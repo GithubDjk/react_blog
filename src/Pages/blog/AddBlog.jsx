@@ -10,14 +10,12 @@ export const AddBlog = () => {
   const navigate = useNavigate()
   const handleBlogPost = async (data) => {
   try {
-    console.log(data)
     const response = await axios.post(`${baseUrl}/blog`, data, {
       headers: {
         "Content-Type": "multipart/form-data",
         "Authorization": localStorage.getItem('token')
       }
     })
-    console.log(response)
     if(response.status == 201){
       navigate('/')
     }else{
