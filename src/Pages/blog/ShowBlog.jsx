@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Link, useParams } from 'react-router-dom'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 import { Layout } from '../global/components/layout/Layout'
 import axios from 'axios'
 import { baseUrl } from '../../config'
@@ -7,12 +7,30 @@ import { baseUrl } from '../../config'
 const ShowBlog = () => {
     const [blog, setBlog] = useState({})
     const { id } = useParams();
+    const navigate = useNavigate()
 
     const fetchBlog = async () => {
        try {
            const response = await axios.get(`${baseUrl}/blog/${id}`)
            if (response === 200 || 304) {
                setBlog(response.data.data)
+           }else{
+               alert('Something went wrong!')
+           }
+       } catch (error) {
+        alert(error?.response?.data?.message)
+       }
+    }
+
+    const deleteBlog = async () => {
+        try {
+           const response = await axios.delete(`${baseUrl}/blog/${id}`, {
+            headers: {
+                Authorization: localStorage.getItem('token')
+            }
+           })
+           if (response === 200 || 304) {
+            navigate('/')
            }else{
                alert('Something went wrong!')
            }
@@ -50,9 +68,7 @@ const ShowBlog = () => {
                                     <button type="submit" className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 my-1">Edit</button>
                                 </Link>
 
-                                <Link to='/'>
-                                    <button type="submit" className="w-full text-white bg-red-600 hover:bg-danger-700 focus:ring-4 focus:outline-none focus:ring-danger-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-danger-600 dark:hover:bg-danger-700 dark:focus:ring-danger-800 my-1">Delete</button>
-                                </Link>
+                                <button type="submit" className="w-full text-white bg-red-600 hover:bg-danger-700 focus:ring-4 focus:outline-none focus:ring-danger-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-danger-600 dark:hover:bg-danger-700 dark:focus:ring-danger-800 my-1" onClick={deleteBlog}>Delete</button>
 
                             </div>
 
