@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 export const NavBar = () => {
+    const token = localStorage.getItem('token')
+    const isLoggedIn = token === null ? false : true
     return (
         <div className='pb-10'>
             <nav className="bg-neutral-primary bg-slate-400 fixed w-full z-20 top-0 start-0 border-b border-default bottom-11 h-fit">
@@ -21,12 +23,18 @@ export const NavBar = () => {
                             <li>
                                 <Link to='/blogs/add' className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Add Blogs</Link>
                             </li>
+                            {
+                                !isLoggedIn &&
                             <li>
                                 <Link to='/login' className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Login</Link>
                             </li>
-                            <li>
-                                <Link to='register' className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Register</Link>
-                            </li>
+                            }
+                            {
+                                !isLoggedIn &&
+                                <li>
+                                    <Link to='register' className="block py-2 px-3 text-heading rounded hover:bg-neutral-tertiary md:hover:bg-transparent md:border-0 md:hover:text-fg-brand md:p-0 md:dark:hover:bg-transparent">Register</Link>
+                                </li>
+                            }
                         </ul>
                     </div>
 
