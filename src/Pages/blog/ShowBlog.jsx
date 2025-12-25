@@ -64,9 +64,10 @@ const ShowBlog = () => {
                             </p>
 
                             <div className='mt-5'>
-                                <Link to='/blogs/edit'>
-                                    <button type="submit" className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 my-1">Edit</button>
-                                </Link>
+                           
+                            <Link to = '/blogs/edit' state={blog}>
+                                    <button type="submit" className="w-full text-white bg-blue-600 hover:bg-primary-700 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800 my-1" >Edit</button>
+                            </Link>
 
                                 <button type="submit" className="w-full text-white bg-red-600 hover:bg-danger-700 focus:ring-4 focus:outline-none focus:ring-danger-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-danger-600 dark:hover:bg-danger-700 dark:focus:ring-danger-800 my-1" onClick={deleteBlog}>Delete</button>
 

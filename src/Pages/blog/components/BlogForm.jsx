@@ -1,13 +1,12 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
-export const BlogForm = ({ type, onSubmit }) => {
-
+export const BlogForm = ({ type, onSubmit, blog }) => {
   const [data, setData] =  useState({
-    title: '',
-    subtitle: '',
-    category: '',
-    description: '',
-    image: ''
+    title: blog?.title || '',
+    subtitle: blog?.subtitle || '',
+    category: blog?.category || '',
+    description: blog?.description || '',
+    imageUrl: blog?.imageUrl || ''
   })
 
   const handleChange = (e) => {
@@ -35,22 +34,22 @@ export const BlogForm = ({ type, onSubmit }) => {
             <form className="space-y-4 md:space-y-6" onSubmit={handleSubmit}>
               <div>
                 <label htmlFor="title" className="block mb-2.5 text-sm font-medium text-heading">Title</label>
-                <input type="text" id="title" name="title" className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" onChange={handleChange} required />
+                <input type="text" id="title" name="title" className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" value={data.title} onChange={handleChange} required />
               </div>
 
               <div>
                 <label htmlFor="subtitle" className="block mb-2.5 text-sm font-medium text-heading">Sub Title</label>
-                <input type="text" id="subtitle" name  = "subtitle" className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" onChange={handleChange} required />
+                <input type="text" id="subtitle" name  = "subtitle" className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" value={data.subtitle} onChange={handleChange} required />
               </div>
 
               <div>
                 <label htmlFor="category" className="block mb-2.5 text-sm font-medium text-heading">Category </label>
-                <input type="text" id="category" name="category" className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" onChange={handleChange} required />
+                <input type="text" id="category" name="category" className="bg-neutral-secondary-medium border border-default-medium text-heading text-sm rounded-base focus:ring-brand focus:border-brand block w-full px-2.5 py-2 shadow-xs placeholder:text-body" placeholder="" value={data.category} onChange={handleChange} required />
               </div>
 
               <div>
                 <label htmlFor="description" className="block mb-2.5 text-sm font-medium text-heading">Description</label>
-                <input type="text" id="description"  name="description" className="bg-neutral-secondary-medium border border-default-medium text-heading text-base rounded-base focus:ring-brand focus:border-brand block w-full px-4 py-3.5 shadow-xs placeholder:text-body" placeholder="" onChange={handleChange} required />
+                <input type="text" id="description"  name="description" className="bg-neutral-secondary-medium border border-default-medium text-heading text-base rounded-base focus:ring-brand focus:border-brand block w-full px-4 py-3.5 shadow-xs placeholder:text-body" placeholder="" value={data.description} onChange={handleChange} required />
               </div>
 
               <div>
